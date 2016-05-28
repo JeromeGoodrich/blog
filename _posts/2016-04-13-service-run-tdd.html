@@ -1,0 +1,94 @@
+---
+layout: post
+title: Service.Run() TDD
+date: 2016-04-13 03:24:18.000000000 -05:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '21732054286'
+author:
+  login: jgoodrich7
+  email: jeromegoodrich@gmail.com
+  display_name: jgoodrich7
+  first_name: ''
+  last_name: ''
+---
+<p>A server takes listens for a request on a specified port once a client makes a request a connection is created called a socket. When a client makes a request, that request is in the form of raw data, bytes which is transmitted to the server through some sort of I/O stream contained within the socket. Once the server receives the request it  needs to parse that request into something more useful to the server application, usually some sort of request object. once the data is in a usable form another class will handle that request meaning, it will go do whatever the request wants it to (as long as it is supported) and return some sort of response. that response will then be written back to client via the socket. and then the socket will close. In my HTTP Server, the class that handles all this logic is the Service class, and more specifically the Run method. There's a lot of behavior to test here and as such this is a fairly tricky class to design. But let's see if we can give it a go. Here's a more simplified version of what we'd expect to happen in the run method.</p>
+<ul>
+<li>Given a Socket that has a Stream</li>
+<li>Parser takes Stream and returns Request</li>
+<li>Handler takes Request and returns Response</li>
+<li>Response writes to Stream</li>
+<li>Socket is closed</li>
+</ul>
+<p>Where to begin? it might make sense to start at the end in this case. We need to verify the behavior that a socket is getting closed. One way to do this is to assert that it is open prior to the Service.Run() method being called and then assert that it is closed after the method is called. That might look something like this.</p>
+<p>[code language="C#"]</p>
+<p>Assert.Equal(mockSocket.isClosed(), False)<br />
+service.Run()<br />
+Assert.Equal(mockSocket.isClosed(), True)</p>
+<p>[/code]</p>
+<p>This tells us that we need to instantiate some object mockSocket that has an isClosed() method that returns a boolean. We also know that we will need to instantiate a service object and also that we will need to pass the mockSocket object to the Service class so that we know that the mockSocket we are testing is the same as the mockSocket that is being closed in the run method. We now have:</p>
+<p>[code language="C#"]<br />
+var mockSocket = new MockSocket();<br />
+var service = new Service(mockSocket);</p>
+<p>Assert.Equal(mockSocket.IsClosed(), False);<br />
+service.Run();<br />
+Assert.Equal(mockSocket.IsClosed(), True);</p>
+<p>[/code]</p>
+<p>If we have done the correct implementation, the test should pass. Next we want to verify that the run method is parsing a stream into a request object. to do this we have to assert three things. One, that the correct method is being called, and two that the method is called with a verifiable stream and three, that it returns a verifiable request object.</p>
+<p>[code language="C#"]<br />
+var mockSocket = new MockSocket();<br />
+var service = new Service(mockSocket);</p>
+<p>Assert.Equal(mockSocket.IsClosed(), False);<br />
+Assert.Equal(mockParser.GetCallsToParse(), 0);<br />
+service.Run();<br />
+Assert.Equal(mockParser.GetCallsToParse(), 1);<br />
+Assert.Equal(mockParser.GetLastStreamPassedToParse(), ioStream);<br />
+Assert.Equal(mockParser.Parse(mockSocket.GetStream()), request);<br />
+Assert.Equal(mockSocket.IsClosed(), True);</p>
+<p>[/code]</p>
+<p>In order to get the test to pass  there's a lot we have to do. We must create a mockParser object with methods GetCallsToParse(), Parse(ioStream) and GetLastStreamPassedToParse(). In order to verify that the mockSocket.GetStream() return the same ioStream as ioStream we pass an ioStream object to the mockSocket constructor similarly we pass the request object to the mockParser to ensure that the request that mockParser.Parse returns is the same as the request in our test.</p>
+<p>[code language="C#"]<br />
+var ioStream = new MemoryStream(new byte[1]);<br />
+var mockSocket = new mockSocket(ioStream);<br />
+var request = new Request()<br />
+var mockParser = new MockParser(request);<br />
+var service = new Service(mockSocket, mockParser,);</p>
+<p>Assert.Equal(mockSocket.IsClosed(), False);<br />
+Assert.Equal(mockParser.GetCallsToParse(), 0);<br />
+service.Run();<br />
+Assert.Equal(mockParser.GetCallsToParse(), 1);<br />
+Assert.Equal(mockParser.GetLastStreamPassedToParse(), ioStream);<br />
+Assert.Equal(mockParser.Parse(ioStream), request);<br />
+Assert.Equal(mockSocket.IsClosed(), True);</p>
+<p>[/code]</p>
+<p>After correct implementation, the tests should pass. We employ similar strategies for testing the handler and sending the response:</p>
+<p>[code language="C#"]<br />
+var ioStream = new MemoryStream(new byte[1]);<br />
+var mockSocket = new mockSocket(ioStream);<br />
+var request = new Request()<br />
+var mockParser = new MockParser(request);<br />
+var mockResponse = new Response();<br />
+var mockHandler = new MockHandler(mockResponse);<br />
+var service = new Service(mockSocket, mockParser, mockHandler);</p>
+<p>Assert.Equal(mockSocket.IsClosed(), False);<br />
+Assert.Equal(mockParser.GetCallsToParse(), 0);<br />
+Assert.Equal(mockHandler.GetCallsToHandle(), 0);<br />
+Assert.Equal(mockResponse.GetCallsToSend(), 0);<br />
+service.Run();</p>
+<p>Assert.Equal(mockParser.GetCallsToParse(), 1);<br />
+Assert.Equal(mockParser.GetLastStreamPassedToParse(), ioStream);<br />
+Assert.Equal(mockParser.Parse(ioStream), request);</p>
+<p>Assert.Equal(mockHandler.GetCallsToHandle(), 1);<br />
+Assert.Equal(mockHandler.GetLastRequestPassedToHandle(), request);<br />
+Assert.Equal(mockHandler.Handle(request), response);</p>
+<p>Assert.Equal(mockResponse.GetCallsToSend(), 1);<br />
+Assert.Equal(mockResponse.GetLastStreamPassedToSend(), ioStream);</p>
+<p>Assert.Equal(mockSocket.IsClosed(), True);</p>
+<p>[/code]</p>
+<p>Done! </p>

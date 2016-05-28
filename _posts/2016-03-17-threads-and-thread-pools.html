@@ -1,0 +1,72 @@
+---
+layout: post
+title: Threads and Thread Pools
+date: 2016-03-17 15:54:48.000000000 -05:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _post_restored_from: a:3:{s:20:"restored_revision_id";i:3718;s:16:"restored_by_user";i:95544862;s:13:"restored_time";i:1458226784;}
+  _edit_last: '95544862'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '20851514506'
+  _rest_api_published: '1'
+author:
+  login: jgoodrich7
+  email: jeromegoodrich@gmail.com
+  display_name: jgoodrich7
+  first_name: ''
+  last_name: ''
+---
+<p>Tuesday was reminiscent of Monday with slow but steady progress being made in a stupor. Wednesday was all about debugging and in the process of doing so getting a better understanding of threads.</p>
+<p>In Java, threads are independent paths of execution within a program. A multithreaded program like my server, allows for multiple concurrent tasks, like when multiple clients want to access the server. There are two ways to create threads in Java</p>
+<ol>
+<li>implementing the Runnable interface</li>
+<li>extending the Thread class</li>
+</ol>
+<p>A class that implements the Runnable interface has the method run(), which contains the logic of the thread. a thread (lowercase "t") is an object of the Thread (uppercase "T") class. threads are creating by passing in a runnable object to the Thread constructor, and then runnable once the start() method is called.</p>
+<p>[code language="java"]</p>
+<p>RunnableClass runnableObject = new RunnableClass<br />
+Thread thread = new Thread(runnableObject);<br />
+thread.start();</p>
+<p>[/code]</p>
+<p>When extending the Thread class, we override the run() method in the class extending thread. This subclass can also call a Thread constructor explicitly in its own constructor to initialize a thread by calling super().</p>
+<p>[code langauge="java"]<br />
+public class myThread extends thread {</p>
+<p>  myThread(String threadName) {<br />
+    super(threadName);<br />
+    start();<br />
+  }<br />
+[/code]</p>
+<p>When working with many threads it's possible for different threads to access and attempt to change the same shared data simultaneously, this is called a race condition. the JVM has it's own thread scheduling algorithm, which means we don't know when or in which order the threads will attempt to access the data. The data is therefore dependent on the thread scheduling algorithm e.g. the threads are "racing" to access/change the data.</p>
+<p>Race conditions can be difficult to detect, so multithreaded unit tests are essential. When a race condition is found it can be handled in several ways.</p>
+<ul>
+<li>creating stateless classes</li>
+<li>using immutable objects</li>
+<li>side-effect free functions</li>
+</ul>
+<p>These aren't always possible though so it's suggested in Java to do the following:</p>
+<blockquote>
+<ul>
+<li>Use atomic classes in java.util.concurrent.atomic package</li>
+<li>If mutation is required, dedicate one thread for doing mutation(changing values of variable). This is also known as actor-based concurrency</li>
+<li>Caution – Non synchronized collections are ALWAYS prone to race conditions. Use concurrent versions of those collections. e.g. prefer ConcurrentHashMap over HashMap</li>
+<li>Use appropriate synchronization in below sequence of preference
+<ul>
+<li>Reentrant read-write lock</li>
+<li>Synchronized block</li>
+<li>Synchronized method</li>
+</ul>
+</li>
+<li>Sincere code reviews</li>
+<li>Testing in multi-threaded environment</li>
+<li>Follow all above religiously</li>
+</ul>
+</blockquote>
+<p><strong>Threadpools</strong></p>
+<p>If my server became insanely popular and I had tens of thousands of clients all using the server simultaneously. I would be in trouble and my server would likely crash. Without a limit on the number of threads my server can reliably create and execute at a given time, It's possible to crash the server with an unbounded number of threads running concurrently. Enter the thread pool. A thread pool is almost exactly what it sounds like -a pool of threads that a program can draw from.</p>
+<p>Java creates thread pools with the Executors  class that provides a multitude of different types of thread pools to create. I used a cached thread pool in my server implementation, which creates new threads for the pool as they are needed and reuses old threads as they become available. Thread pools work by creating a set number of threads initially, and then selecting a thread to run when the execute(runnableObject) function is called.</p>
+<p>Concurrency is a pretty expansive topic, but hopefully this provides a better basic understanding of threads and thread pools</p>
+<p>&nbsp;</p>

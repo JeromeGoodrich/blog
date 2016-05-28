@@ -1,0 +1,53 @@
+---
+layout: post
+title: 'The Long Road: Day 18'
+date: 2016-02-03 23:08:03.000000000 -06:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '19438834535'
+author:
+  login: jgoodrich7
+  email: jeromegoodrich@gmail.com
+  display_name: jgoodrich7
+  first_name: ''
+  last_name: ''
+---
+<p>I was digging around the internet trying to find a resource that might help me better understand the SOLID principles, specifically in a context related to Clojure and functional programming. Pretty cool, that a it would lead me to <a href="http://www.infoq.com/presentations/SOLID-Clojure">a talk by 8thlighter Colin J</a>. about this very thing. Here are the principles (DILOS) as I remember them.</p>
+<p>D - Dependency Inversion Principle</p>
+<p><strong>Problem: </strong>Changes in one part of code cascades to other parts of code. Code is harder to change because there is more to change. Typically caused by code that ought to change less, depending on code that tends to change more.</p>
+<p><strong>Solution: </strong>Depend on abstractions not concretions. But what are abstractions?</p>
+<ul>
+<li>abstraction: defprotocol
+<ul>
+<li>concretions: deftype defrecord</li>
+</ul>
+</li>
+<li>abstraction: defmulti
+<ul>
+<li>concretion: defmethod</li>
+</ul>
+</li>
+<li>functions can also be abstractions that are "consumed" by higher-order functions</li>
+<li>namespaces though not often</li>
+</ul>
+<p>a cool thing about Clojure is that it many instances it forces you to create the abstraction.</p>
+<p>I - Interface Segregation Principles</p>
+<p><strong>Problem: </strong>Client shouldn't have to depend on abstractions they don't use. Fat, uncohesive protocols and namespaces.</p>
+<p><strong>Solution: </strong>keep protocols and namespaces small and cohesive</p>
+<p>L - Liskov Substitution Principle</p>
+<p><strong>Problem: </strong>A particular concretion is not substitutable for it's abstraction. switching on types (conds and if statements depending on details).</p>
+<p><strong>Solution: </strong>More of a human problem. It's about expectations, and how we define them.</p>
+<p>O - Open-Closed Principle</p>
+<p><strong>Problem: </strong>adding new features requires changes to existing code.</p>
+<p><strong>Solution:</strong> Use multimethods and other types of polymorphism in Clojure</p>
+<p>S - Single Responsibility Principle</p>
+<p><strong>Problem: </strong>Code is doing too many things at once. It's hard to reason about. Hard to change because you need to think about it more. Reuse is also impeded</p>
+<p><strong>Solution:</strong> Give a unit only one reason to change.</p>
+<p style="text-align:center;">.  .  .</p>
+<p style="text-align:left;">That's a really high-level overview, but it was really helpful to get some more context around these abstract concepts in the language that I'm currently working in. Specifically, because I'm at a point now where I've got all the features and functionality working for tomorrow's IPM, but I notice some places in the code that violate these principles and now I have a better understanding of why, an idea of how to solve them, and quite an itch to do so. We'll see if I decide to scratch it tonight.</p>

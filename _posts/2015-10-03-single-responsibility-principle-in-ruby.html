@@ -1,0 +1,25 @@
+---
+layout: post
+title: Single Responsibility Principle in Ruby
+date: 2015-10-03 02:26:08.000000000 -05:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '15419688091'
+author:
+  login: jgoodrich7
+  email: jeromegoodrich@gmail.com
+  display_name: jgoodrich7
+  first_name: ''
+  last_name: ''
+---
+<p>The poor classes in my TicTacToe game are over-worked and confused. They are overachievers trying to do too many things at once and adding unnecessary complexity to my program as a result. The program works, it ekes by like a understaffed restaurant on a busy night, but it's just barely hanging in there and really needs some organizational changes if it's going to continue.</p>
+<p>In Ruby, it's often said that each class should have one and <i>only </i>one responsibility. This principle is aptly named the <b>single responsibility principle</b> and it's crucial for a well designed program. If a ruby class only has one responsibility it's much easier to test, and change in the event a new feature is added or something like that. Segregated responsibilities also just make the code more readable and easy to follow. There's obviously a limit a code that's overly deconstructed can become overly complex, so as <a href="http://jjbohn.info/blog/2014/07/28/single-responsibility-principle-a-solid-week/">this article</a> suggests another definition might provide a more actionable heuristic then simply <i>"a ruby class should only have one responsibility"</i>.  The article settles on <i>“Design classes so there should never be more than one reason for a class to change.” </i>as it's working definition for the the single responsibility principle. I like it because it encourages a rubyists to consider how their code might change, which is something that I wish I had in the back of mind as I was working on the 2nd iteration of the TicTacToe game.</p>
+<div id="1442031015655" class="butter-embed" title="">
+<figure><img src="{{ site.baseurl }}/assets/convert?width=600&amp;fit=max&amp;quality=80" alt="" /></figure>
+</div>

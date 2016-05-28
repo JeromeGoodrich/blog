@@ -1,0 +1,69 @@
+---
+layout: post
+title: 'The Long Road: Day 9-11 OR (on minimax and tinkering)'
+date: 2016-01-29 23:06:42.000000000 -06:00
+type: post
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_job_id: '19264895956'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+author:
+  login: jgoodrich7
+  email: jeromegoodrich@gmail.com
+  display_name: jgoodrich7
+  first_name: ''
+  last_name: ''
+---
+<p>Today I want to talk about tinkering, the next step in the natural progression that begins with stuckness, which I wrote about a little while ago. Tinkering is how we get unstuck. It's the process of trial and error that eventually leads us down the path to progress.</p>
+<p>I learned a lot about tinkering while trying to build an unbeatable computer player my Clojure TicTacToe, using the "minimax" algorithm. To start, I had some fundamental knowledge of how the algorithm worked from when I had to create it in my Ruby version of TicTacToe, and from that experience and the feedback I got from it, I should have remembered that the best thing for me to do was write out in plain english what it was that I needed my code to do, and then convert that into pseudo code and start building from there.</p>
+<p>I would call this post-hoc realization my first rule of tinkering:</p>
+<p><strong>RULE 1: </strong><strong>Start with low fidelity.</strong></p>
+<p>In other words, don't invest time and mental energy into writing code when you have no clue what that code is supposed to be doing. Here's what I wish I had wrote before I even started coding:</p>
+<ol>
+<li>For a given board find all the unmarked spaces on that board</li>
+<li>For each unmarked space, create a new board and fill in that space with the cpu's marker</li>
+<li>Evaluate each board for a terminal state (win, loss, tie)</li>
+<li>if a board is in a terminal state, associate a score (win+10 loss -10 tie 0) with the space</li>
+<li>if not in a terminal state repeat steps 1-4 but filling in the spaces with the opponents marker instead. alternate the markers with each repetition</li>
+<li>find the max of all terminal states reached when it was the cpu's turn and the min when it was the opponents turn. associate these scores with the initial-marked space</li>
+<li>Find the max of all the scores that are returned and select the space associated with the max score.</li>
+</ol>
+<p>It's not pretty, it's not entirely accurate and it's missing some information, but it was much quicker and easier then trying to figure this all out in code, from scratch (at least, for me). It gives me a pretty good idea of what some of my dependencies will be, where I might need to use a recursive function, and what kind of data-structures to potentially use. More than enough to make some serious progress in pseudo-code.</p>
+<p>[code language="clojure"]<br />
+;minimax [board markers]<br />
+;unmarked-spaces = (filter number? board)<br />
+;create new board for each unmarked space =<br />
+  ;(map #(mark-spot % marker) unmarked-spaces)<br />
+;score each move =<br />
+  ;(map #(get-score %1 %2 markers) unmarked-spaces possible-boards)<br />
+[/code]</p>
+<p>Sweet. So writing out the pseudo-code based on my lo-fi instructions is helping me give some shape to this algorithm early on. I now have this notion of a get-score function that seems to be the meat of my algorithm and deserves it's own pseudo-code treatment.</p>
+<p>[code language="clojure"]</p>
+<p>;I'm mapping over the get score function so the parameters are individual spaces and boards.<br />
+(get-score [space board markers]<br />
+;first evaluate scores for different game-states<br />
+;cond<br />
+    ;(win-game? board (first markers)) (assoc space {:score 10})<br />
+    ;(win-game? board (second markers))(assoc space {:score -10})<br />
+    ;(tie-game? board) (assoc space {:score 0})<br />
+    ;:else reverse player order = (reverse markers)<br />
+    ;      unmarked-spaces = (same as before)<br />
+    ;      create new board for each unmarked space = (same as before)<br />
+    ;      score new boards =<br />
+             (same as before but we want the same space<br />
+              for each board since we only care about the first move)<br />
+    ;   if it was your turn last<br />
+    ;     (max-by-score scored boards) -<br />
+              we want to return the space with the best<br />
+              score since that's the one the computer will<br />
+              want to choose on their turn<br />
+    ;     (min-by-score scored boards) -<br />
+              we want to return the space with the worst<br />
+              score since that's the one that the opponent<br />
+              will choose on their turn if the game is perfectly played</p>
+<p>[/code]</p>
+<p>Sweet, so if I had done this initially, I'd be in a pretty good spot. Cutting this post short now since I'm way behind.</p>

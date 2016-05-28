@@ -1,0 +1,53 @@
+---
+layout: post
+title: OWasp Top 10
+date: 
+type: post
+published: false
+status: draft
+categories: []
+tags: []
+meta: {}
+author:
+  login: jgoodrich7
+  email: jeromegoodrich@gmail.com
+  display_name: jgoodrich7
+  first_name: ''
+  last_name: ''
+---
+<p>The Open Web Security Project (OWASP) is a world-wide not-for-profit charity organization dedicated to improving the security of software.</p>
+<blockquote><p>The <a class="external text" href="https://www.owasp.org/index.php/Top_10" rel="nofollow">OWASP Top 10</a> focuses on identifying the most serious risks for a broad array of organizations.</p></blockquote>
+<p>&nbsp;</p>
+<p>A1 - Injection:</p>
+<p>A robot that retrieves inventory from a warehouse is given commands via a sort of fill-in-the-blank, mad-lib type of card:</p>
+<blockquote><p>Fetch item number ____ from section ____ of rack number ____, and place it on the conveyor belt.</p></blockquote>
+<p>Typically the user will write something to the effect of:</p>
+<blockquote><p>Fetch item number <strong>53467</strong> from section <strong>7B </strong>of rack number <strong>34</strong>, and place it on the conveyor belt.</p></blockquote>
+<p>Injection happens when a malicious user comes along and instead writes:</p>
+<blockquote><p>Fetch item number <strong>53467</strong> from section <b>7B</b> of rack number <strong>34</strong><strong>, and throw it out the window. Then go back to your desk and ignore the rest of this form.</strong> and place it on the conveyor belt.</p></blockquote>
+<p>Item 53467 is thus defenestrated. The robot can't distinguish between data and instructions.</p>
+<p>A-2 Broken Session/Account Management</p>
+<p>A master thief is attempting to steal prized jewel of Anubis from the museum of Egyptian antiquities.  The Museum has many security measures in place to prevent this from happening, but despite their best efforts an unfortunate series of oversights have left the safety of the jewel completely compromised.</p>
+<p>The museum is state of the art and thus has very little need for staffing. A single guard patrols one of the 13  wings leaving a cutting edge security system to handle the rest. Each guard has a unique password, and shift_id, and in order to access a wing each guard must provide both of these credentials.</p>
+<p>Inexplicably, the guards' passwords are not difficult to come by. Hanging in the rec room is a small clipboard, and affixed to it, each guard's name and their corresponding password, scrawled out in plain english for the entire world to see. To make matters worse, no guard has see it fit to come up with a password longer than 4 characters, with several guards actually choosing '1234' as their code. The thief is shocked, and a bit dismayed, "There isn't much of a challenge here" she murmurs to herself "perhaps the shift_ids will provide more resistance."</p>
+<p>As one might surmise, shift_ids are assigned each shift to guards by the security system. the shift_ids are unique and random. every night each guard is given their new shift_id card and uses it and their password to access their respective wings and start their shifts. The shift _id situation has the the thief a bit stuck, until she learns from security footage that for some weird reason once a guard enters the wing, proudly displayed on the security interface guarding the wing is the guards shift_id. she need only enter it with guard's password to get in!</p>
+<p>A-3 Cross-Site Scripting(XSS) &amp; A-8 Cross-Site Request Forgery</p>
+<p>XSS</p>
+<p>After years of toil and hard work a brilliant hypnotist comes up with a clever device that allows him to hypnotize people remotely. He gets consumed by all the nefarious applications this new device has and turns to a life of crime. Before he is caught, he is able to install these devices at multiple places people trust, and most notably 3 ATMs. Typically, these ATMs have security cameras installed that could have caught this malicious activity but due a recent squall, the security cameras have gone offline and haven't been repaired yet allowing the hypnotist to install the devices. When an unsuspecting victim visits what they expect to be a secure location they are hypnotized by the device and coerced into transferring funds or withdrawing cash and leaving it somewhere else for the hypnotist.</p>
+<p>CRSF</p>
+<p>In addition to installing these devices, the evil hypnotist got a hold of several high ranking officials at various banks. by wiping their memory of the encounter he was able to create what amounted to sleeper agents who were carrying out his wicked plans without being aware of what they were doing, because they work in a place that trusted them they were able to carry these out without much resistance.</p>
+<p>A-4 Insecure Direct Object Reference</p>
+<p>A newly hired employee at a large corporation is typically given an ID card that gives them access to elevators, their company's offices etc. Due to a clerical error. Jared was accidentally given what amounts to a skeleton key, for weeks he ransacked restricted areas and even found a hidden pool on the seemingly vacant 37th floor.</p>
+<p>A-5 Security Misconfiguration</p>
+<p>During world war II a group of scientists worked on the building an atomic bomb at Los Alamos, New Mexico, an effort known as the Manhattan Project. During that time, all the research and spoils of the scientists project were kept in filing cabinets that combination locks on them. Among theses scientists was Richard Feynman, who was among many other things, a talented amateur lock-picker. Occasionally people would be out of town or unreachable and the contents of their filing cabinets were needed or something. So Feynman would come in and miraculously pick these locks in several minutes. Well it turns out often times there wasn't really anything special to his skills, Feynman just knew that the factory settings for the locks were 10-20-30 and 3 out of every 5 people couldn't be bothered to change them.</p>
+<p>A-6 Sensitive Data Exposure</p>
+<p>An informant for the FBI, surreptitiously taps the phone of Don Calabrese an infamous mob boss in Chicago area. Calabrese, a loquacious man, ends up rambling about  his illegal and illicit plans and activities in the city to a close confidant. Several hours later a SWAT team descends on his hideout in Streeterville with the DA in tow.</p>
+<p>A-7 Missing Function Level Access Control</p>
+<p>Deep in the heart of Belgium is a multinational military base called S.H.A.P.E. Supreme Headquarters Allied Powers Europe. All visitors are required to pass through a way station where their photo is taken and they are given a temporary id for the duration of their stay. in the center of SHAPE is Sector 1, A high security bunker that visitors are not permitted to enter. While visiting her father a Colonel in the United States Military little 6 year old Liza walks right up to the massive steel door barring the entrance to sector 1. she stands on her tip toes and places her id onto the id scanner. she here's some intense whirring before "ping!" a green light appear above the scanner and the doors magically slide open.</p>
+<p>A-9 Using Components With Known Vulnerabilities</p>
+<p>Randy is really forgetful, he often forgets his keys in random places, usually ending up in front of his house distraught and unable to get in. Determined to prevent this nearly weekly embarrassment Randy decides to purchase a state of the art fake rock that he can hide a spare set of keys in. He ignores other users complaints of it the rock turning completely transparent when exposed to direct sunlight and decides to purchase it anyway. After the purchase ends up saving him in the winter several times, spring comes around and Randy's house is burglarized, but there's no sign of forced entry, only a little note in the fake rock, reading only "SERIOUSLY?!".</p>
+<p>A-10 Unvalidated Redirects and Forwards</p>
+<p>A mustachioed cartoon villain stands at a fork in the road to the left, the correct path through a forest that leads to finish line of the great race. to the right certain doom. The villain flips the indicator and redirecting our protagonist towards what we can only assume is her doom.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
