@@ -22,3 +22,5 @@ that takes any number of handlers as an arguments and returns another handler wi
 
 When an http request is received, the Ring adapter takes the request, deconstructs it into a request map and passes it to the ring application to be processed.
 The application returns a response map which the adapter then reconstructs into a response before sending it off to the server.
+
+[1]: http://www.requestb.in
