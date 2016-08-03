@@ -46,7 +46,7 @@ bin with an expiration time and retrieve only bins that aren't expired.
 
 SQL stuff can be kind of tricky, but it was surprisingly smooth. I had done some preliminary research right before I left on vacation so I'm thinking that
 helped me out a bit. That was it for the db stuff. The next part was validating that the user inputted expiration time was an integer between 1 and 24.
-In attempt to make things easier, I decided that I might as well use the [validateur] (https://github.com/michaelklishin/validateur) library that I used for
+In attempt to make things easier, I decided that I might as well use the [validateur](https://github.com/michaelklishin/validateur) library that I used for
 validating the user-inputted response fields. This took considerably more time as I misunderstood how the `:messages` and `:message-fn` options of
 validateur's `numericality-of` function worked. After trying multiple things I thought should work I remembered to actually look at the source code, and eventually
 came up with this.
@@ -77,4 +77,4 @@ Here's an explanation of `:message-fn` from Validateur's source code
 
 ```
 
-Next step is to handle UI portion of the validations, and then it's on to part 2, in which I will be using [quartzite] (https://github.com/michaelklishin/quartzite).
+Next step is to handle UI portion of the validations, and then it's on to part 2, in which I will be using [quartzite](https://github.com/michaelklishin/quartzite).
