@@ -50,4 +50,4 @@ significant improvement that can be made to this process, namely that a large po
 Travis CI. Since HTTPeek is already using Travis this equates to a couple of small changes to the `.travis.yml` file. You can avail
 yourself of the documentation to get things set-up or you can use the [Travis commandline tool](https://github.com/travis-ci/travis.rb)
 to take care of the set-up for you. It's as easy as `travis setup heroku`. You can even configure the build to run the migrations for you
-with the `run:` key. Now every time you push changes to your app and your build passes it will also deploy to Heroku!
+th the `run:` key. Now every time you push changes to your app and your build passes it will also deploy to Heroku!
