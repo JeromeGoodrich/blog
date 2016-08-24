@@ -10,7 +10,7 @@ impressed with is his ability to and steadfastness in writing crappy code. It's
 not meant as backhanded compliment or sarcastic slight, I think it's a valuable skill and one I've struggled with throughout my apprenticeship. Let me explain...
 
 Jake has ingrained in himself the discipline of what I'm calling
-_Pain First Programming (PFP)_ PFP is best described as obstinate
+_Pain First Programming (PFP)_. PFP is best described as obstinate
 resistance to changing the code you've written until looking at it and leaving things as they are actually causes you some sort of averse physical reaction.
 
 
@@ -24,4 +24,4 @@ Furthermore, whether you like it or not, you will feel the pain eventually. PFP 
 
 When you force yourself to make mistakes early on, you develop a lower and lowertolerance to pain, which means you identify issues and fix things quicker. It primes you to constantly think of ways that you could be doing things better.
 
-PFP is not a novel concept, but I've been thinking about it a bit and thought itdeserved some further fleshing out.
+PFP is not a novel concept, but I've been thinking about it a bit and thought it deserved some further fleshing out.
