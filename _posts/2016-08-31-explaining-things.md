@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Explaining Things
-date: 08-31-16
+date: 2016-08-31
 ---
 
 I've always admired people that can explain things really well. People like Richard Feynman, and Tim Urban,
