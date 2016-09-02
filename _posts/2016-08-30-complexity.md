@@ -4,18 +4,24 @@ title: The Crisis of Complexity
 date: 2016-08-30
 ---
 
-The biggest problem in maintenance of software systems is complexity. Software systems are
-difficult to understand. There are 3 main contributors to the complexity of software.
 
-1. State
-2. Control
-3. Code Volume
+Complexity is greatest major difficulty when developing software systems. That sounds like
+a platitude, but the underlying reasons from this difficulty are important and interesting to think about.
+In [yesterday's post]() I touched briefly on complexity arising from control as I found it most surprising
+When reading. However, in terms of impact, it pales in comparison to complexity arising from state, which
+I'll talk a bit about today.
 
 
-And there are two general approaches to understanding software.
+Before that, it's important to note that the issue of complexity in software, is an issue becuase
+complexity makes it difficult to understand a system, and that we usually employ two general approaches
+to understanding a system.
+
 
 1. Testing
 2. Informal Reasoning
+
+
+Where testing is meant as a sort of outside-in approach to understanding the system. i.e.
 
 State is the primary contributor of complexity in a software system because
 
