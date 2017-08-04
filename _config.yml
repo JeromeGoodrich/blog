@@ -6,12 +6,12 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: The Long Road
+title: experiments and essais
 email: jeromegoodrich@gmail.com
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://Jgoodrich07.github.io" # the base hostname & protocol for your site
-twitter_username:
-github_username: Jgoodrich07
+url: "http://jeromegoodrich.com" # the base hostname & protocol for your site
+twitter_username: J_roams_well
+github_username: JeromeGoodrich
 
 # Build settings
 markdown: kramdown
