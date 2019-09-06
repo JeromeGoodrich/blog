@@ -1,0 +1,51 @@
+---
+layout: post
+title: "Friction"
+date: "2019-09-06 16:57:41 -0400"
+---
+
+On June 4th of this year I started a burpee pact. Every day me and the
+others that are in the pact do a set of burpees. We started with ten.
+Three months later we're up to 16. It's not as much about the number as it
+is doing it everyday... and the trick to doing it everyday is to get the
+first one done. After the first, it takes 30 seconds and you're finished.
+The barrier is low. There's little friction. If I had to go to the gym or
+if it took any time longer than 5 minutes, I guarantee I would be much
+less consistent.
+
+Technology these days is all about designing seamless, frictionless
+experiences. Amazon's one-click purchasing, face-recognition on your
+mobile device, and Netflix's autoplay provide a smooth and, in many cases,
+addictive experience. Without friction, we slip into comfort of
+convenience and find it very difficult to tear ourselves away.
+
+My vice is Youtube. It's what I use to turn off my brain. I recognize this
+and have tried all-manner of curbing what turns into self-destructive
+behavior. What I have found is that just like burpees, once I get youtube
+open it's not closed for quite some time so strategies like using an
+extension to block the site or "blanking-out" Youtube so that there's only
+the search bar, don't work. The friction has to be increased for opening
+up Youtube in the first place. With this realization, I created my own
+little website blocker that works across browsers. Now when I compulsively
+go to Youtube, nothing happens and I'm reminded that Youtube is not
+something I want to be doing with my time. It's pretty easy to undo the
+website blocker at the moment, but I haven't really found myself trying.
+That small amount of friciton is usually enough to deter me.
+
+Raising the barriers, or increasing the friction to stop an undesirable
+habit is something that's long been known in behavior science. However,
+I think implicit human biases make us believe that if we just try harder
+we can overcome whatever temptation we're fighting. This is damaging,
+especially if we consider something like my usage of Youtube an addiction.
+There's a reason step one of AA's 12 step program is admitting you have
+a problem. Until very recently, I considered my usage of Youtube
+a character flaw–I didn't have a problem, I just needed more discipline.
+Nothing changed. In fact, things got worse. I went into a 3 month long
+slump where I was in a state of constant distraction, never allowing
+myself to do one thing at a time. If I was working, I was also watching
+Youtube, if I was eating, Youtube, relaxing, Youtube. It seeped into
+almost every part of my life and I think for the first time in my life.
+It's only when I realized it didn't matter how much will power I had that
+things began to change.
+
+
